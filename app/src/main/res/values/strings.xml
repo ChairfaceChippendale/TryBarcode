@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">TryBarcode</string>
+    <string name="make_barcode_btn">Make barcode</string>
+    <string name="share_message_title">Share by …</string>
+    <string name="barcode_value_hint">Value</string>
+</resources>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.ujujzk.trybarcode.MainActivity">
+
+        <Spinner
+            android:id="@+id/barcode_type_snr"
+            style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="16dp"
+            android:overlapAnchor="false"
+            android:theme="@style/BlueSpinner" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/barcode_value_container"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="16dp"
+            android:theme="@style/BlueTextInputLayout"
+            app:errorTextAppearance="@style/BlueTextInputLayoutError">
+
+            <EditText
+                android:id="@+id/barcode_value_edt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/barcode_value_hint"
+                android:imeOptions="actionDone"
+                android:inputType="textCapWords"
+                android:theme="@style/BlueEditText"
+                android:textColor="#444"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/make_barcode_btn"
+            style="@style/BlueButton"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/make_barcode_btn"
+
+            />
+
+
+        <ImageView
+            android:id="@+id/barcode_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="16dp"
+            android:scaleType="center"
+            tools:src="@mipmap/ic_launcher" />
+
+    </LinearLayout>
+</layout>
