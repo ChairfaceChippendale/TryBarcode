@@ -7,7 +7,7 @@ android {
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.ujujzk.trybarcode"
-        minSdkVersion 21
+        minSdkVersion 16
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -43,17 +43,16 @@ buildscript {
 
 dependencies {
 
-    ext.supportVersion='25.3.0'
+    ext.supportVersion='25.3.1'
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
-
 
     //support
     compile "com.android.support:appcompat-v7:$supportVersion"
     compile "com.android.support:design:$supportVersion"
 
     //utils
-    compile 'com.google.zxing:core:+'
+    compile 'com.google.zxing:core:3.3.0' //barcodes
 
     //test
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {

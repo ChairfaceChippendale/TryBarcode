@@ -1,4 +1,4 @@
-package com.ujujzk.trybarcode.BarcodeUtil;
+package com.ujujzk.trybarcode.barcodeUtil;
 
 
 import android.graphics.Bitmap;
@@ -9,19 +9,20 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
-import com.google.zxing.qrcode.QRCodeWriter;
-import com.ujujzk.trybarcode.BuildConfig;
 import com.ujujzk.trybarcode.MainView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class BarcodeControllerImpl implements BarcodeController {
 
-    MainView mainActivity;
+    private MainView mainActivity;
+
+    private BarcodeControllerImpl() {
+        throw new AssertionError();
+    }
 
     public BarcodeControllerImpl(MainView mainActivity) {
         this.mainActivity = mainActivity;
@@ -29,11 +30,8 @@ public class BarcodeControllerImpl implements BarcodeController {
 
     @Override
     public void makeBarcode(String type, String value) {
-
         Bitmap bmp = null;
-
         MultiFormatWriter writer = new MultiFormatWriter();
-
         try {
             BitMatrix bitMatrix = writer.encode(value, BarcodeFormat.valueOf(type), 512, 512);
             int width = bitMatrix.getWidth();
@@ -44,12 +42,13 @@ public class BarcodeControllerImpl implements BarcodeController {
                     bmp.setPixel(x, y, bitMatrix.get(x, y) ? Color.BLACK : Color.WHITE);
                 }
             }
-        } catch (WriterException e) {
+        } catch (WriterException | IllegalArgumentException e) {
             e.printStackTrace();
             mainActivity.showValueError(e.getMessage());
-        } catch (IllegalArgumentException e) {
+        } catch (ArrayIndexOutOfBoundsException e) {
+            //Code93 writer throws it if value invalid
             e.printStackTrace();
-            mainActivity.showValueError(e.getMessage());
+            mainActivity.showValueError("Invalid value");
         }
         mainActivity.showBarcodeImage(bmp);
     }
